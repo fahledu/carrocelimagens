@@ -44,12 +44,12 @@ body{
 }
 
 .container i:first-child{
-    left: -22px;
+    left: -1px;
     display: none;
 }
 
 .container i:last-child{
-    right: -22px;
+    right: -44px;
 }
 
 .container .carousel{

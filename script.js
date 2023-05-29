@@ -40,21 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let prevScrollLeft;
     let positionDiff;
 
-    const showHideIcons = () => {
-        arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
-        arrowIcons[1].style.display = carousel.scrollLeft - scrollWidthDiff > -1 ? "none" : "block";
-    }
-
     fstImg.addEventListener('load', () => {
 
-        arrowIcons.forEach(icon => {
-            let firstImgWidth = fstImg.clientWidth + 14;
-            icon.addEventListener('click', () => {
-                carousel.scrollLeft += icon.id === "left" ? - firstImgWidth : firstImgWidth;
-                setTimeout(() => showHideIcons(), 60);
-            });
-        });
+const showHideIcons = () => {
+    let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
+    arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
+    arrowIcons[1].style.display = carousel.scrollLeft - scrollWidth > -1 ? "none" : "block";
+}
+
+arrowIcons.forEach(icon => {
+    let firstImgWidth = fstImg.clientWidth + 14;
+    icon.addEventListener("click", () => {
+        carousel.scrollLeft += icon.id === "left" ? -firstImgWidth : firstImgWidth;
+        setTimeout(() => showHideIcons(), 60);
     });
+});
+    });
+
+    
     const autoSlide = () => {
         if (carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
 
